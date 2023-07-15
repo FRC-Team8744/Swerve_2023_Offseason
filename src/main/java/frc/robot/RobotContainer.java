@@ -45,6 +45,8 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+    m_chooser.addOption("AutonomousCommand", new AutonomousCommand(m_drivetrain, translationXSupplier, translationYSupplier, rotationSupplier));
+    SmartDashboard.putData("Autonomous Mode", m_chooser);
   }
 
   /**
@@ -67,7 +69,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new InstantCommand();
+    return m_chooser.getSelected();
   }
 
   private static double deadband(double value, double deadband) {

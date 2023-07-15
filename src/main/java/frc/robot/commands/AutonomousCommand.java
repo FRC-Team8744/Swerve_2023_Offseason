@@ -11,38 +11,38 @@ import frc.robot.subsystems.Drivetrain;
 public class AutonomousCommand extends CommandBase {
   private final Drivetrain m_drivetrain;
   /** Creates a new AutonomousCommand. */
-  public AutonomousCommand(Drivetrain subsystem) {
+  public AutonomousCommand(Drivetrain subsystem, DoubleSupplier translationXSupplier,DoubleSupplier translationYSupplier,DoubleSupplier rotationSupplier) {
     m_drivetrain = subsystem;
         addRequirements(m_drivetrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    m_drivetrain.Drive(0.0, 0.0);//throttle, steering
-  }
+  // @Override
+  // public void initialize() {
+  //   m_drivetrain.Drive(0.0, 0.0);//throttle, steering
+  // }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {}
 
   // Called once the command ends or is interrupted.
-  @Override
+  // @Override
   public void end(boolean interrupted) {
-    m_drivetrain.Drive(0.0, 0.0);
+    m_drivetrain.Drive(0.0, 0.0, 0.0);
     m_drivetrain.BrakeNow();
   }
 
   // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    if (m_DistanceInches < 0) {
-      if (m_drivetrain.checkdistanceInches() <= m_startpoint + m_DistanceInches) return true;
-  } else {
-      if (m_drivetrain.checkdistanceInches() >= m_startpoint + m_DistanceInches) return true;
+  // @Override
+  // public boolean isFinished() {
+  //   if (m_DistanceInches < 0) {
+  //     if (m_drivetrain.checkdistanceInches() <= m_startpoint + m_DistanceInches) return true;
+  // } else {
+  //     if (m_drivetrain.checkdistanceInches() >= m_startpoint + m_DistanceInches) return true;
 
-  }
-    return false;
-  }
+  // }
+  //   return false;
+  // }
 }
